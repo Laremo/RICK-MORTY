@@ -1,0 +1,45 @@
+.row {
+  display: flex;
+  justify-content: flex-start;
+  text-align: start;
+  flex-direction: column;
+  width: 100%;
+  padding: 12px;
+  margin: 8px auto;
+  background-color: rgb(24, 0, 37);
+}
+
+row h2,
+h4 {
+  margin: 0;
+}
+
+.row:hover {
+  background-color: rgb(27, 21, 42);
+  cursor: pointer;
+}
+
+.pageNav {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  user-select: none;
+}
+
+.pageNav h4 {
+  margin: auto 4px;
+  cursor: pointer;
+}
+.pageNav p {
+  margin: auto 4px;
+  cursor: default;
+}
+
+.inactive {
+  color: rgb(37, 37, 37);
+}
+.inactive:hover {
+  cursor: default;
+}
