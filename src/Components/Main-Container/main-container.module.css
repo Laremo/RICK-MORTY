@@ -1,0 +1,15 @@
+:root {
+  --lessthan50: green;
+  --more50_less80: blue;
+  --more80: red;
+}
+
+.less50 {
+  background-color: var(--lessthan50);
+}
+.more80 {
+  background-color: var(--more80);
+}
+.midling {
+  background-color: var(--more50_less80);
+}
