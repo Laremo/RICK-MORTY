@@ -28,12 +28,12 @@ export default function CharactersContainer({ location }) {
   }, []);
 
   if (!location.residents || !location.residents.length) {
-    return <h1> {location.name} no tiene habitantes</h1>;
+    return <h1> {location.name} has no residents</h1>;
   }
 
   return (
     <div className={styles.container}>
-      <h1>Habitantes de {location.name}</h1>
+      <h1>Residents of {location.name}</h1>
       <div className={styles.charBox}>
         {characters.map((char) => (
           <CharacterCard

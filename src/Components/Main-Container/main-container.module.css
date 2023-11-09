@@ -6,6 +6,7 @@
 
 .less50 {
   background-color: var(--lessthan50);
+  height: 90%;
 }
 .more80 {
   background-color: var(--more80);

@@ -3,6 +3,8 @@ import LocationContainer from './Components/location-container';
 import PageController from './Components/page-controller';
 
 export default function LocationForm({ setLocation }) {
+  const [isLoading, setIsLoading] = useState(false);
+
   const [searchValue, setSearchValue] = useState('');
   const [error, setError] = useState(null);
   const [pages, setPages] = useState(0);
@@ -29,9 +31,12 @@ export default function LocationForm({ setLocation }) {
 
   const manageSearch = (e) => {
     e.preventDefault();
-    setError(null);
-    let searchURL = '';
     if (searchValue.trim() === '') return;
+
+    setError(null);
+    setIsLoading(true);
+
+    let searchURL = '';
 
     const searchByName = isNaN(Number(searchValue.trim()));
     if (searchByName)
@@ -40,11 +45,12 @@ export default function LocationForm({ setLocation }) {
 
     fetch(searchURL + searchValue)
       .then((res) => {
+        setIsLoading(false);
         return res.json();
       })
       .then((data) => {
         if (data.error) {
-          setError('Sin resultados para la búsqueda');
+          setError('This location does not exist');
           setLocations([]);
           return;
         } else {
@@ -64,15 +70,20 @@ export default function LocationForm({ setLocation }) {
   return (
     <>
       <form onSubmit={manageSearch}>
-        <label>Selecciona o busca una localizacion</label>
+        <label>Search for a location: </label>
         <input
           type='text'
           value={searchValue}
+          placeholder='enter a name or id'
           onChange={manageChangeSearch}
         />
-        <button>Buscar</button>
+        <button>Search</button>
       </form>
+
+      {isLoading ? <h2>Loading...</h2> : null}
+
       {error ? <h3>{error}</h3> : null}
+
       {locations.length > 0 ? (
         <LocationContainer
           locations={locations}
