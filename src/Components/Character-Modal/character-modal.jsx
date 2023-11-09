@@ -6,14 +6,14 @@ export default function CharacterModal({ character, toggleModal }) {
   const [episodes, setEpisodes] = useState([]);
 
   useEffect(() => {
-    const episodes = character.episode;
-    let episodesID = '';
+    let episodesID = [];
     for (let i = 0; i < character.episode.length; i++) {
       if (i === 3) break;
-      const index = episodes[i].lastIndexOf('/') + 1;
-      episodesID += episodes[i].slice(index) + ',';
+      //   const index = episodes[i].lastIndexOf('/') + 1;
+      //   episodesID += episodes[i].slice(index) + ',';
+      episodesID.push(character.episode[i]);
     }
-    console.log(episodesID);
+    setEpisodes(episodesID);
   }, []);
 
   return (
@@ -28,9 +28,19 @@ export default function CharacterModal({ character, toggleModal }) {
           <h3>Status: {character.status}</h3>
           <h3>Species: {character.species}</h3>
           <h3>Origin: {character.origin.name}</h3>
-          <div>
+          <div className={styles.episodesContainer}>
             <h3>Episodes:</h3>
-            {}
+            <ul>
+              {episodes.map((episode, i) => (
+                <li className={styles.episode}>
+                  <a
+                    key={i}
+                    href={episode}>
+                    {episode}
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>
