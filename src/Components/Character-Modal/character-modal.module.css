@@ -1,0 +1,35 @@
+.modal {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 3rem;
+  left: 7.5%;
+  background-color: rgba(56, 89, 59, 0.95);
+  width: 85%;
+  height: 85vh;
+  z-index: 45;
+}
+.modal button {
+  font-size: 1.4rem;
+  align-self: flex-end;
+  color: #bbb800;
+  background-color: transparent;
+  border: none;
+  border-radius: 20px;
+}
+
+.modal button:hover {
+  color: #957301;
+  cursor: pointer;
+}
+
+.modalBackground {
+  position: absolute;
+  z-index: 44;
+  height: 100%;
+  width: 100%;
+  top: 0%;
+  left: 0%;
+  background-color: rgba(6, 5, 5, 0.63);
+  backdrop-filter: blur(10px);
+}
