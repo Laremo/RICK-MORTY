@@ -19,7 +19,12 @@ export default function CharactersContainer({ location }) {
 
     fetch('https://rickandmortyapi.com/api/character/' + searchIds)
       .then((res) => res.json())
-      .then((data) => setCharacters(data));
+      .then((data) => {
+        data.sort((a, b) => {
+          return a.name > b.name;
+        });
+        setCharacters(data);
+      });
   }, []);
 
   if (!location.residents || !location.residents.length) {

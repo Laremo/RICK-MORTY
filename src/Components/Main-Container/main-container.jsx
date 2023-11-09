@@ -10,13 +10,12 @@ export default function MainContainer() {
   useEffect(() => {
     if (!location) return;
     if (location.id <= 50) {
-      console.log('hey hey');
       setBackGround(styles.less50);
     }
     if (location.id > 80) {
       setBackGround(styles.more80);
     }
-    if (location.id > 50 && location.id < 80) {
+    if (location.id > 50 && location.id <= 80) {
       setBackGround(styles.midling);
     }
   }, [location]);
@@ -37,7 +36,7 @@ export default function MainContainer() {
         onClick={() => {
           setLocation(null);
         }}>
-        volver
+        return
       </button>
       <CharactersContainer location={location} />
     </div>

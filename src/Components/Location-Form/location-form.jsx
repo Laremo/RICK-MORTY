@@ -30,21 +30,30 @@ export default function LocationForm({ setLocation }) {
   const manageSearch = (e) => {
     e.preventDefault();
     setError(null);
-
+    let searchURL = '';
     if (searchValue.trim() === '') return;
-    fetch('https://rickandmortyapi.com/api/location/?name=' + searchValue)
+
+    const searchByName = isNaN(Number(searchValue.trim()));
+    if (searchByName)
+      searchURL = 'https://rickandmortyapi.com/api/location/?name=';
+    else searchURL = 'https://rickandmortyapi.com/api/location/';
+
+    fetch(searchURL + searchValue)
       .then((res) => {
         return res.json();
       })
       .then((data) => {
-        console.log(data);
         if (data.error) {
           setError('Sin resultados para la búsqueda');
           setLocations([]);
           return;
         } else {
-          const prev = data.info.prev;
-          const next = data.info.next;
+          if (!searchByName) {
+            setLocations([data]);
+            return;
+          }
+          const prev = data?.info.prev;
+          const next = data?.info?.next;
           setPageControl({ prev, next });
           setPages(data.info.pages);
           setLocations(data.results);
