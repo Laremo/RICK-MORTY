@@ -32,12 +32,10 @@ export default function CharacterModal({ character, toggleModal }) {
             <h3>Episodes:</h3>
             <ul>
               {episodes.map((episode, i) => (
-                <li className={styles.episode}>
-                  <a
-                    key={i}
-                    href={episode}>
-                    {episode}
-                  </a>
+                <li
+                  key={i}
+                  className={styles.episode}>
+                  <a href={episode}>{episode}</a>
                 </li>
               ))}
             </ul>
